@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+Commands to include in the namual page:
+---------------------------------------
+2) clear
+3) cp
+4) grep
+5) less
+6) ls
+7) mkdir
+8) mv
+9) rm
+ 
+-->
+  <head>
+    <meta charset="utf-8"/>
+    <title>Sbakardia&copy: Terminus Manual</title>
+    <style>
+      div.man_wrapper{
+        background: rgba(0, 0, 10, 0.9);
+        color: rgb(0, 255, 0);
+        display: block;
+        padding: 2%;
+        margin: 10% 3% 15% 3%;
+        border-radius: 5px;
+      }
+
+      div.man_wrapper:hover{
+        cursor: none;
+      }
+
+      ul.link_wrapper{
+        background: rgba(0, 0, 10, 0.9);
+        list-style-type: none;
+        padding: 2%;
+        margin: 2%;
+        width: auto;
+        height: 15%;
+        border-radius: 5px;
+        position: relative;
+      }
+
+      li{
+        background: none;
+        padding: 0px;
+        margin: 0.5%;
+        width: 10%;
+        height: auto;
+        display: inline;
+        float: none;
+        overflow: hidden;
+      }
+
+      a.link{
+        background: rgba(0, 100, 50, 0.9);
+        color: white;
+        padding: 1%;
+        margin: 0px;
+        width: 10%;
+        height: inherit;
+        text-decoration: none;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      a.link:hover{
+        background: rgba(0, 200, 255, 0.9);
+        color: black;
+        font-style: italic;
+      }
+
+      center{ background: none; padding: 0px; margin: 0px; }
+
+      h4.command_head{
+        background: transparent;
+        color: rgb(0, 200, 255);
+        text-transform: uppercase;
+      }
+
+      em.command_name{
+        color: rgb(0, 200, 255);
+      }
+
+      p{
+        color: rgb(0, 255, 0);
+      }
+
+      span{
+        color: rgb(0, 100, 255);
+      }
+
+      button{
+        background: black;
+        color: white;
+        font-size: 100%;
+        padding: 1%;
+        border: 2px solid white;
+        border-radius: 5%;
+        margin: 0px;
+        cursor: pointer;
+      }
+    </style>
+
+    <ul class="link_wrapper">
+      <center>
+      <li><a class="link" href="#clear">clear</a></li>
+      <li><a class="link" href="#cp">cp</a></li>
+      <li><a class="link" href="#grep">grep</a></li>
+      <li><a class="link" href="#less">less</a></li>
+      <li><a class="link" href="#ls">ls</a></li>
+      <li><a class="link" href="#mkdir">mkdir</a></li>
+      <li><a class="link" href="#mv">mv</a></li>
+      <li><a class="link" href="#rm">rm</a></li>
+      </center>
+    </ul>
+  </head>
+  <body>
+<!-- -----------------------------------------------clear------------------------------------------------ -->
+    <div id="clear" class="man_wrapper">
+      <hr/>
+      <h4 class="command_head">name</h4>
+      <p><em class="command_name">clear</em> - clears the terminal screen</p><br/>
+      <h4 class="command_head">synopsis</h4>
+      <em class="command_name">clear</em><br/>
+      <h4 class="command_head">description</h4>
+      <p><em class="command_name">clear</em> clears your screen if this is possible, 
+      including its scrollback buffer (if the extended "E3" capability is defined).</p><br/>
+      <p><em class="command_name">clear</em> looks in the environment for the terminal type and then in the 
+      <span>terminfo</span> database to determine how to clear the screen.</p><br/>
+      <p><em class="command_name">clear</em> ignores any command-line parameters that may be present.</p>
+      <hr/><br/>
+      <center><button onclick="window.history.back()">close man page</button></center>
+    </div>
+<!-- -------------------------------------------------cp-------------------------------------------------- -->
+    <div id="cp"    class="man_wrapper">
+      <hr/>
+      <h4 class="command_head">name</h4>
+      <p><em class="command_name">cp</em> - copy files and directories</p><br/>
+      <h4 class="command_head">synopsis</h4>
+      <p><em class="command_name">cp</em> [OPTION]... <span>[-T]</span> SOURCE DEST</p><br/>
+      <p><em class="command_name">cp</em> [OPTION]... SOURCE... DIRECTORY</p><br/>
+      <p><em class="command_name">cp</em> [OPTION]... <span>-t</span> DIRECTORY... SOURCE...</p><br/>
+      <h4 class="command_head">description</h4>
+      <p>Copy SOURCE to DEST, or multiple SOURCE(s) to DIRECTORY. Mandatory arguments to long options are <br/>
+      mandatory for short options too.<br/><br/>
+      NOTE: Copying of directories to DIRECTORY is not supported here in Terminus.</p>
+      <hr/><br/>
+      <center><button onclick="window.history.back()">close man page</button></center>
+    </div>
+<!-- ------------------------------------------------grep------------------------------------------------ -->
+    <div id="grep"  class="man_wrapper">
+      <hr/>
+      <h4 class="command_head">name</h4>
+      <p><em class="command_name">grep</em> - print lines matching a pattern</p><br/>
+      <h4 class="command_head">synopsis</h4>
+      <p><em class="command_name">grep</em> [OPTIONS] PATTERN [FILE...]</p><br/>
+      <p><em class="command_name">grep</em> [OPTIONS] [<span>-e</span> PATTERN]... [<span>-f</span> FILE]... [FILE...]</p><br/>
+      <h4 class="command_head">description</h4>
+      <p><em class="command_name">grep</em> searches the named input FILE(s) for lines containing a match to <br/>
+      the given PATTERN.  If no files are specified, or if the file <span>"-"</span> is given, 
+      <em class="command_name">grep</em> searches standard input. By default, <em class="command_name">grep</em> <br/>
+      prints the matching lines.<br/><br/>NOTE: The <span>"-"</span> option/FILE is not supported here in Terminus.</p>
+      <hr/><br/>
+      <center><button onclick="window.history.back()">close man page</button></center>
+    </div>
+<!-- -----------------------------------------------less------------------------------------------------- -->
+    <div id="less"  class="man_wrapper">
+      <hr/>
+      <h4 class="command_head">name</h4>
+      <p><em class="command_name">less</em> - opposite of more</p><br/>
+      <h4 class="command_head">synopsis</h4>
+      <p><em class="command_name">less </em><span>-?</span></p>
+      <p><em class="command_name">less </em><span>--help</span></p>
+      <p><em class="command_name">less </em><span>-V</span</p>
+      <p><em class="command_name">less </em><span>--version</span></p>
+      <p><em class="command_name">less </em><span>[-[+]aABcCdeEfFgGiIJKLmMnNqQrRsSuUVwWX~]</span></p>
+      <p><em class="command_name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</em><span>[-b </span>
+      space<span>] [-h </span>lines<span>] 
+      [-j </span>line<span>] [-k </span>keyfile<span>]</span></p>
+      <p><em class="command_name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</em><span>[-{oO} 
+      </span>logfile<span>] [-p </span>pattern<span>] [-P </span>prompt<span>] [-t </span>tag<span>]</span>
+      </p>
+      <p><em class="command_name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</em><span>[-T </span>tagsfile
+      <span>] [-x </span>tab<span>,...] [-y </span>lines<span>] [-[z] </span>lines<span>]</span></p>
+      <p><em class="command_name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</em><span>[-# </span>shift
+      <span>] [+[+]</span>cmd<span>] [--] [</span>filename<span>]...</span></p><br/>
+      <h4 class="command_head">description</h4>
+      <p><span>Less</span> is a program similar to <span>more</span> (1), but it has many more features. <br/>
+      <span>Less</span> does not have to read the entire input file before starting, so with large input <br/>
+      files  it  starts up faster than text editors like <span>vi</span> (1). <span>Less</span> uses  <span>termcap</span> 
+      (or terminfo on some systems), so it can run on a variety of terminals. <br/>There is even limited support 
+      for  hardcopy  terminals. <br/>
+      (On a hardcopy terminal, lines which should be printed at the top of the screen are prefixed with a caret.)</p>
+      <hr/><br/>
+      <center><button onclick="window.history.back()">close man page</button></center>
+    </div>
+<!-- -------------------------------------------------ls------------------------------------------------- -->
+    <div id="ls"    class="man_wrapper">
+      <hr/>
+      <h4 class="command_head">name</h4>
+      <p><em class="command_name">ls</em> - list directory contents</p><br/>
+      <h4 class="command_head">synopsis</h4>
+      <p><em class="command_name">ls</em> [OPTION]... [FILE]...</p><br/>
+      <h4 class="command_head">description</h4>
+      <p>List information about the FILEs (the current directory by default).</p>
+      <hr/><br/>
+      <center><button onclick="window.history.back()">close man page</button></center>
+    </div>
+<!-- -----------------------------------------------mkdir------------------------------------------------ -->
+    <div id="mkdir" class="man_wrapper">
+      <hr/>
+      <h4 class="command_head">name</h4>
+      <p><em class="command_name">mkdir</em> - make directories</p><br/>
+      <h4 class="command_head">synopsis</h4>
+      <p><em class="command_name">mkdir</em> [OPTION]... DIRECTORY...</p><br/>
+      <h4 class="command_head">description</h4>
+      <p>Create the DIRECTORY(ies), if they do not already exist.</p>
+      <hr/><br/>
+      <center><button onclick="window.history.back()">close man page</button></center>
+    </div>
+<!-- ------------------------------------------------mv-------------------------------------------------- -->
+    <div id="mv"    class="man_wrapper">
+      <hr/>
+      <h4 class="command_head">name</h4>
+      <p><em class="command_name">mv</em> - move (rename) files</p><br/>
+      <h4 class="command_head">synopsis</h4>
+      <p><em class="command_name">mv</em> [OPTION]... <span>[-T]</span> SOURCE DEST</p><br/>
+      <p><em class="command_name">mv</em> [OPTION]... SOURCE... DIRECTORY</p><br/>
+      <p><em class="command_name">mv</em> [OPTION]... <span>-t</span> DIRECTORY... SOURCE...</p><br/>
+      <h4 class="command_head">description</h4>
+      <p>Rename SOURCE to DEST, or move SOURCE(s) to DIRECTORY.</p>
+      <hr/><br/>
+      <center><button onclick="window.history.back()">close man page</button></center>
+    </div>
+<!-- --------------------------------------------------rm------------------------------------------------ -->
+    <div id="rm"    class="man_wrapper">
+      <hr/>
+      <h4 class="command_head">name</h4>
+      <p><em class="command_name">rm</em> - remove files or directories</p><br/>
+      <h4 class="command_head">synopsis</h4>
+      <p><em class="command_name">rm</em> [OPTION]... [FILE]...</p><br/>
+      <h4 class="command_head">description</h4>
+      <p>This  manual  page  documents  the GNU version of <span>rm</span>. <span>rm</span> removes 
+       each specified file. <br/>By default, it does not remove directories.<br/><br/>
+       If the -I or --interactive=once option is given, and there are more than  three  files  or<br/>
+       the -r, -R, or --recursive are given, then <span>rm</span> prompts the user for whether to proceed with<br/>
+       the entire operation.  If the response is not affirmative, the entire command is aborted.<br/><br/>
+       Otherwise, if a file is unwritable, standard input is a terminal, and the -f or --force<br/>
+       option  is  not  given,  or the -i or --interactive=always option is given, <span>rm</span> prompts the<br/>
+       user for whether to remove the file. If the response is not affirmative, the file is<br/>
+       skipped.
+      </p>
+      <hr/><br/>
+      <center><button onclick="window.history.back()">close man page</button></center>
+    </div>
+<!-- ----------------------------------------Copyright/Unsupported Content------------------------------- -->
+    <div id="rm"    class="man_wrapper" style="cursor: auto; margin-bottom: 5%;">
+      <hr>
+      <h4 class="command_head">Unsupported Content</h4>
+      <p><span>OPTIONS/ARGUMENTS</span> such as -t -T -f -V --help -? -h, etc. are not supported in this game.<br/>
+      Operations with multiple files for a command are not supported, <span>e.g.: ls ~/forest ~ ~/meadow</span></p>
+      <h4 class="command_head">Copyright</h4>
+      <p>These commands and manual page are a fragment of the copyrighted version<br/>
+      Copyright &copy; 2016 Free Software Foundation, Inc.<br/>
+      Full documentation <a href="http://www.gnu.org/software/coreutils" style="text-decoration: none; color: white">HERE<a/>
+      </p>
+      <hr/><br/>
+      <center><button onclick="window.history.back()">close man page</button></center>
+    </div>
+<!-- ------------------------------------------Go-To-Game------------------------------------------------ 
+    <center><button onclick="requestAnimationFrame(ret)">Close Man Page</button></center>
+    <script type="text/javascript">
+      function ret(){
+        window.history.back();
+      }
+    </script>
+-->
+  </body>
+</html>

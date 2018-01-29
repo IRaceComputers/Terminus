@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lan="en">
+<head>
+  <title>Sbarkadia&copy: Terminus</title>
+  <link rel="stylesheet" type="text/css" href="terminus.css"/>
+  <script type="text/javascript" src="jQuery_3.2.1.min.js"></script>
+  <meta charset="utf-8"/>
+</head>
+<body>
+  <center>
+  <div id="Menu">
+    <h1>Terminus</h1>
+    <div id="buttons">
+      <button id="BeginGame" onclick="startGame()">Begin Game</button><br/>
+			<a id="Exit" href="../../pages/part_index.html">Exit</a>
+<!--      <button id="Help" onclick="alert('For help, type \'help\' in the console.')">Help</button>-->
+    </div>
+  </div>
+  </center>
+  <center>
+  <div id="Game">
+    <h4>Terminus</h4>
+    <canvas id="terminal"></canvas>
+    <span>
+      <input class="clean-slide" id="command" type="text" placeholder="type command here" />
+<!--      <label for="command">Command</label> -->
+    </span>
+  </div>
+  </center><br/>
+<!--
+  <center>
+    <div id="menu-button">
+      <button id="ViewMenu" onclick="requestAnimationFrame(viewMenu)">Menu</button>
+    </div>
+  </center>
+-->
+  <script type="text/javascript" src="terminus.js"></script>
+  <script type="text/javascript">
+//###########################################__Smart requestAnimationFrame by Paul Irish__##############################################
+  window.requestAnimFrame = (function(){
+    return window.requestAnimationFrame       || 
+           window.webkitRequestAnimationFrame || 
+           window.mozRequestAnimationFrame    || 
+           function(callback){
+            window.setTimeout(callback, 1000/60);
+           };
+  })();
+
+//######################################################__Set Dimensions__##############################################################
+    document.getElementById("terminal").width    = window.innerWidth;
+    document.getElementById("terminal").height   = window.innerHeight;
+    document.getElementById("Game").style.width  = window.innerWidth;
+    document.getElementById("Game").style.width  = window.innerHeigth;
+//#######################################################__Game Runnerner__################################################################
+    function Runner(){
+      $("#Game").click(function(){ document.getElementById("command").focus(); });
+      if(Terminus.textY >= Terminus.canvas.height){ Terminus.textY = 15; }
+      Terminus.ctx.clearRect( 0, Terminus.textY-15, Terminus.canvas.width, Terminus.canvas.height );
+
+      var cwd = Terminus['dir']['pwd'];
+      Terminus.textY -= 17.5;
+      switch(cwd){
+        case Terminus.dir.home     :  if(Terminus.Pnew.home){
+                                        for(var i = 0; i < Terminus.item['home']['letter'].length; i++){
+                                          Terminus.display(Terminus.item['home']['letter'][i], "#AA7");
+                                        }
+                                        Terminus.display("Anything written in this colour is a regular item\/creature.", "#FFF");
+                                        Terminus.display("Anything written in this colour is the name of a place.", "#0F0");
+                                        Terminus.display("Anything written in this colour is a game message.", "#FF0");
+                                        Terminus.display("Anything written in this colour is a terminal\/bash error message.", "#F00");
+                                        Terminus.Pnew.home = false;
+                                      }
+                                      break;
+
+        case Terminus.dir.forest   :  if(Terminus.Pnew.forest){
+                                        if(Terminus.item.forest.letter !== undefined){
+																				var end = Terminus.item.forest.letter.length;
+                                        if(((end+1)*17.5 + Terminus.textY) > Terminus.canvas.height){
+                                          Terminus.clear();
+                                        }
+                                        for(var i = 0; i < end; i++){
+                                          Terminus.display(Terminus.item['forest']['letter'][i], "#AA7");
+                                        }
+                                        delete Terminus.item['forest']['letter'];
+                                        }
+                                        Terminus.Pnew.forest = false;
+                                      }
+                                      break;
+
+        case Terminus.dir.academy  :  if(Terminus.Pnew.academy){
+                                        if(Terminus.item.academy.letter !== undefined){
+																				var end = Terminus.item.academy.letter.length;
+                                        if(((end+1)*17.5 + Terminus.textY) > Terminus.canvas.height){
+                                          Terminus.clear();
+                                        }
+                                        for(var i = 0; i < end; i++){
+                                          Terminus.display(Terminus.item['academy']['letter'][i], "#AA7");
+                                        }
+                                        delete Terminus.item['academy']['letter'];
+                                        }
+                                        Terminus.Pnew.academy = false;
+                                      }
+                                      break;
+
+        case Terminus.dir.lessons  :  if(Terminus.Pnew.lessons){
+                                        if(Terminus.item.lessons.letter !== undefined){
+																				var end = Terminus.item.lessons.letter.length;
+                                        if(((end+1)*17.5 + Terminus.textY) > Terminus.canvas.height){
+                                          Terminus.clear();
+                                        }
+                                        for(var i = 0; i < end; i++){
+                                          Terminus.display(Terminus.item['lessons']['letter'][i], "#AA7");
+                                        }
+                                        delete Terminus.item['lessons']['letter'];
+                                        }
+                                        Terminus.Pnew.lessons = false;
+                                      }
+                                      break;
+
+        case Terminus.dir.Library  :  if(Terminus.Pnew.Library){
+                                        if(Terminus.item.Library.letter !== undefined){
+																				var end = Terminus.item.Library.letter.length;
+                                        if(((end+1)*17.5 + Terminus.textY) > Terminus.canvas.height){
+                                          Terminus.clear();
+                                        }
+                                        for(var i = 0; i < end; i++){
+                                          Terminus.display(Terminus.item['Library']['letter'][i], "#AA7");
+                                        }
+                                        delete Terminus.item['Library']['letter'];
+                                        }
+                                        Terminus.Pnew.Library = false;
+                                      }
+                                      break;
+
+        case Terminus.dir.practiceRoom :  if(Terminus.Pnew.pracroom){
+                                            if(Terminus.item.practiceRoom.letter !== undefined){
+																						var end = Terminus.item['practiceRoom']['letter'].length;
+                                            if(((end+1)*17.5 + Terminus.textY) > Terminus.canvas.height){
+                                              Terminus.clear();
+                                            }
+                                            for(var i=0; i < end; i++){
+                                              Terminus.display(Terminus.item['practiceRoom']['letter'][i], "#AA7");
+                                            }
+                                            delete Terminus.item['practiceRoom']['letter'];
+                                            }
+                                            Terminus.Pnew.pracroom = false;
+                                          }
+                                          break;
+
+        case Terminus.dir.meadow   :  if(Terminus.Pnew.meadow){
+                                        if(Terminus.item.meadow.letter !== undefined){
+																				var end = Terminus.item['meadow']['letter'].length;
+                                        if(((end+1)*17.5 + Terminus.textY) > Terminus.canvas.height){
+                                          Terminus.clear();
+                                        }
+                                        for(var i=0; i < end; i++){
+                                          Terminus.display(Terminus.item['meadow']['letter'][i], "#AA7");
+                                        }
+                                        delete Terminus.item['meadow']['letter'];
+                                        }
+                                        Terminus.Pnew.meadow = false;
+                                      }
+                                      break;
+
+        case Terminus.dir.mountains:  if(Terminus.Pnew.mountains){
+                                        if(Terminus.item.mountains.letter !== undefined){
+																				var end = Terminus.item.mountains.letter.length;
+                                        if(((end+1)*17.5 + Terminus.textY) > Terminus.canvas.height){ Terminus.clear(); }
+                                        for(var i = 0; i < end; i++){
+                                          Terminus.display(Terminus.item['mountains']['letter'][i], "#AA7");
+                                        }
+                                        delete Terminus.item['mountains']['letter'];
+                                        }
+                                        Terminus.Pnew.mountains = false;
+                                      }
+                                      break;
+
+        case Terminus.dir.cave     :  if(Terminus.Pnew.cave){
+                                        if(Terminus.item.cave.letter !== undefined){
+                                          if((35 + Terminus.textY) > Terminus.canvas.height){
+                                            Terminus.clear();
+                                          }
+                                          Terminus.display(Terminus.item['cave']['letter'][0], "#AA7");
+                                          delete Terminus.item['cave']['letter'];
+                                        }
+                                        Terminus.Pnew.cave = false;
+                                      }
+                                      break;
+
+        case Terminus.dir.Staircase:  if(Terminus.Pnew.Staircase){
+                                        if(Terminus.item.Staircase.letter !== undefined){
+                                          if((35 + Terminus.textY) > Terminus.canvas.height){
+                                            Terminus.clear();
+                                          }
+                                          Terminus.display(Terminus.item['Staircase']['letter'][0], "#AA7");
+                                          delete Terminus.item['Staircase']['letter'];
+                                        }
+                                        Terminus.Pnew.Staircase = false;
+                                      }
+                                      break;
+
+        case Terminus.dir.DarkCorridor:  if(Terminus.Pnew.DarkCorridor){
+                                        if(Terminus.item.DarkCorridor.letter !== undefined){
+																					var end = Terminus.item['DarkCorridor']['letter'].length;
+                                          if(((end+1)*17.5 + Terminus.textY) > Terminus.canvas.height){
+                                            Terminus.clear();
+                                          }
+                                          for(var i=0; i < end; i++){
+                                            Terminus.display(Terminus.item['DarkCorridor']['letter'][i], "#AA7");
+                                          }
+                                          delete Terminus.item['DarkCorridor']['letter'];
+                                        }
+                                        Terminus.Pnew.DarkCorridor = false;
+                                      }
+                                      break;
+
+        case Terminus.dir.DankRoom:  if(Terminus.Pnew.DankRoom){
+                                        if(Terminus.item.DankRoom.letter !== undefined){
+																					var end = Terminus.item['DankRoom']['letter'].length;
+                                          if(((end+1)*17.5 + Terminus.textY) > Terminus.canvas.height){
+                                            Terminus.clear();
+                                          }
+                                          for(var i=0; i < end; i++){
+                                            Terminus.display(Terminus.item['DankRoom']['letter'][i], "#AA7");
+                                          }
+                                          delete Terminus.item['DankRoom']['letter'];
+                                        }
+                                        Terminus.Pnew.DankRoom = false;
+                                      }
+                                      break;
+
+        case Terminus.dir.SmallHole:  if(Terminus.Pnew.SmallHole){
+                                        if(Terminus.item.SmallHole.letter !== undefined){
+																					var end = Terminus.item['SmallHole']['letter'].length;
+                                          if(((end+1)*17.5 + Terminus.textY) > Terminus.canvas.height){
+                                            Terminus.clear();
+                                          }
+                                          for(var i=0; i < end; i++){
+                                            Terminus.display(Terminus.item['SmallHole']['letter'][i], "#AA7");
+                                          }
+                                          delete Terminus.item['SmallHole']['letter'];
+                                        }
+                                        Terminus.Pnew.SmallHole = false;
+                                      }
+                                      break;
+
+        case Terminus.dir.Tunnel:  if(Terminus.Pnew.Tunnel){
+                                        if(Terminus.item.Tunnel.letter !== undefined){
+																					var end = Terminus.item['Tunnel']['letter'].length;
+                                          if(((end+1)*17.5 + Terminus.textY) > Terminus.canvas.height){ Terminus.clear(); }
+                                          for(var i=0; i < end; i++){
+                                            Terminus.display(Terminus.item['Tunnel']['letter'][i], "#AA7");
+                                          }
+                                          delete Terminus.item['Tunnel']['letter'];
+                                        }
+                                        Terminus.Pnew.Tunnel = false;
+                                      }
+                                      break;
+
+        case Terminus.dir.StoneChamber:  if(Terminus.Pnew.StoneChamber){
+                                         if(Terminus.item.StoneChamber.letter !== undefined){
+																					 var end = Terminus.item['StoneChamber']['letter'].length;
+                                           if(((end+1)*17.5 + Terminus.textY) > Terminus.canvas.height){ Terminus.clear(); }
+                                           for(var i=0; i < end; i++){
+                                             Terminus.display(Terminus.item['StoneChamber']['letter'][i], "#AA7");
+                                           }
+                                           delete Terminus.item['StoneChamber']['letter'];
+                                         }
+                                         Terminus.Pnew.StoneChamber = false;
+                                       }
+                                       break;
+
+        case Terminus.dir.Portal     : Terminus.dir.pwd = Terminus.dir.TownSquare;
+                                       Terminus.dir.portalWD = Terminus.dir.StoneChamber;
+                                       Terminus.dir.lwd = Terminus.dir.home; 
+                                       if(Terminus.dir.backpack){
+                                         Terminus.item[ "TownSquare" ][ "backpack" ] = "backpack";
+                                         Terminus.dir.backpack = Terminus.dir.TownSquare+"\u002Fbackpack";
+                                       }
+                                       if(Terminus.Pnew.Portal){
+                                         Terminus.clear();
+                                         Terminus.notifyOne("New Chapter Unlocked:", 
+                                                            "\t--------------------------------------------------------\n"+
+                                                            "\t| \~\= WELCOME TO CHAPTER 2 \=\~ |\n"+
+                                                            "\t--------------------------------------------------------"
+                                                           );
+                                         Terminus.notifyOne("New Ability Unlocked:", 
+                                                            "You can now teleport to/from any point in the game:\n"+
+                                                            " I) Type 'cd -' to teleport to the last place you were in.\n"+
+                                                            "II) Type 'cd fullpath', ..."
+                                                           );
+                                         Terminus.notifyOne("...",
+                                                            "(where fullpath is the full path to a place "+
+                                                            "as can be seen on your terminal screen) in order "+
+                                                            " to teleport to that place."+
+                                                            "\nE.g.: Type 'cd ~/forest/academy' to teleport to the academy."
+                                                           );
+                                       }
+                                       break;
+
+        case Terminus.dir.TownSquare : if(Terminus.Pnew.TownSquare){
+                                         if(Terminus.item.TownSquare.letter !== undefined){
+																					 var end = Terminus.item['TownSquare']['letter'].length;
+																					 if((end+1)*17.5+Terminus.textY > Terminus.canvas.height){ Terminus.clear(); }
+                                           for(var i=0; i < end; i++){
+                                             Terminus.display(Terminus.item['TownSquare']['letter'][i], "#AA7");
+                                           }
+                                           delete Terminus.item['TownSquare']['letter'];
+                                         }
+                                         Terminus.Pnew.TownSquare = false;
+                                       }
+                                       break;
+
+        case Terminus.dir.TSLibrary : if(Terminus.Pnew.TSLibrary){
+                                         if(Terminus.item.TSLibrary.letter !== undefined){
+																					 var end = Terminus.item['TSLibrary']['letter'].length;
+																					 if((end+1)*17.5+Terminus.textY > Terminus.canvas.height){ Terminus.clear(); }
+                                           for(var i=0; i < end; i++){
+                                             Terminus.display(Terminus.item['TSLibrary']['letter'][i], "#AA7");
+                                           }
+                                           delete Terminus.item['TSLibrary']['letter'];
+                                         }
+                                         Terminus.Pnew.TSLibrary = false;
+                                       }
+                                       break;
+
+       case Terminus.dir.Marketplace : if(Terminus.Pnew.Marketplace){
+                                         if(Terminus.item.Marketplace.letter !== undefined){
+																					 var end = Terminus.item['Marketplace']['letter'].length;
+																					 if((end+1)*17.5+Terminus.textY > Terminus.canvas.height){ Terminus.clear(); }
+                                           for(var i=0; i < end; i++){
+                                             Terminus.display(Terminus.item['Marketplace']['letter'][i], "#AA7");
+                                           }
+                                           delete Terminus.item['Marketplace']['letter'];
+                                         }
+                                         Terminus.Pnew.Marketplace = false;
+                                       }
+                                       break;
+
+       case Terminus.dir.ArtisansShop: if(Terminus.Pnew.ArtisansShop){
+                                         if(Terminus.item.ArtisansShop.letter !== undefined){
+																					 var end = Terminus.item['ArtisansShop']['letter'].length;
+																					 if((end+1)*17.5+Terminus.textY > Terminus.canvas.height){ Terminus.clear(); }
+                                           for(var i=0; i < end; i++){
+                                             Terminus.display(Terminus.item['ArtisansShop']['letter'][i], "#AA7");
+                                           }
+                                           delete Terminus.item['ArtisansShop']['letter'];
+                                         }
+                                         Terminus.Pnew.ArtisansShop = false;
+                                       }
+                                       break;
+
+       case Terminus.dir.RockyPath   : if(Terminus.Pnew.RockyPath){
+                                         if(Terminus.item.RockyPath.letter !== undefined){
+																					 var end = Terminus.item['RockyPath']['letter'].length;
+																					 if((end+1)*17.5+Terminus.textY > Terminus.canvas.height){ Terminus.clear(); }
+                                           for(var i=0; i < end; i++){
+                                             Terminus.display(Terminus.item['RockyPath']['letter'][i], "#AA7");
+                                           }
+                                           delete Terminus.item['RockyPath']['letter'];
+                                         }
+                                         Terminus.Pnew.RockyPath = false;
+                                       }
+                                       break;
+
+       case Terminus.dir.Farm        : if(Terminus.Pnew.Farm){
+                                         if(Terminus.item.Farm.letter !== undefined){
+																					 var end = Terminus.item['Farm']['letter'].length;
+																					 if((end+1)*17.5+Terminus.textY > Terminus.canvas.height){ Terminus.clear(); }
+                                           for(var i=0; i < end; i++){
+                                             Terminus.display(Terminus.item['Farm']['letter'][i], "#AA7");
+                                           }
+                                           delete Terminus.item['Farm']['letter'];
+                                         }
+                                         Terminus.Pnew.Farm = false;
+                                       }
+                                       break;
+
+       case Terminus.dir.BrokenBridge: if(Terminus.Pnew.BrokenBridge){
+                                         if(Terminus.item.BrokenBridge.letter !== undefined){
+																					 var end = Terminus.item['BrokenBridge']['letter'].length;
+																					 if((end+1)*17.5+Terminus.textY > Terminus.canvas.height){ Terminus.clear(); }
+                                           for(var i=0; i < end; i++){
+                                             Terminus.display(Terminus.item['BrokenBridge']['letter'][i], "#AA7");
+                                           }
+                                           delete Terminus.item['BrokenBridge']['letter'];
+                                         }
+                                         Terminus.Pnew.BrokenBridge = false;
+                                       }
+                                       break;
+
+       case Terminus.dir.Clearing    : if(Terminus.Pnew.Clearing){
+                                         if(Terminus.item.Clearing.letter !== undefined){
+																					 var end = Terminus.item['Clearing']['letter'].length;
+																					 if((end+1)*17.5+Terminus.textY > Terminus.canvas.height){ Terminus.clear(); }
+                                           for(var i=0; i < end; i++){
+                                             Terminus.display(Terminus.item['Clearing']['letter'][i], "#AA7");
+                                           }
+                                           delete Terminus.item['Clearing']['letter'];
+                                         }
+                                         Terminus.Pnew.Clearing = false;
+                                       }
+                                       break;
+
+       case Terminus.dir.OminousPath : if(Terminus.Pnew.OminousPath){
+                                         if(Terminus.item.OminousPath.letter !== undefined){
+																					 var end = Terminus.item['OminousPath']['letter'].length;
+																					 if((end+1)*17.5+Terminus.textY > Terminus.canvas.height){ Terminus.clear(); }
+                                           for(var i=0; i < end; i++){
+                                             Terminus.display(Terminus.item['OminousPath']['letter'][i], "#AA7");
+                                           }
+                                           delete Terminus.item['OminousPath']['letter'];
+                                         }
+                                         Terminus.Pnew.OminousPath = false;
+                                       }
+                                       break;
+
+       case Terminus.dir.Cave        : if(Terminus.Pnew.Cave){
+                                         if(Terminus.item.Cave.letter !== undefined){
+																					 var end = Terminus.item['Cave']['letter'].length;
+																					 if((end+1)*17.5+Terminus.textY > Terminus.canvas.height){ Terminus.clear(); }
+                                           for(var i=0; i < end; i++){
+                                             Terminus.display(Terminus.item['Cave']['letter'][i], "#AA7");
+                                           }
+                                           delete Terminus.item['Cave']['letter'];
+                                         }
+                                         Terminus.Pnew.Cave = false;
+                                       }
+                                       break;
+
+       case Terminus.dir.root        : if(Terminus.Pnew.root){
+                                         if(Terminus.item.root.letter !== undefined){
+                                           Terminus.clear();
+                                           Terminus.notifyOne("New Chapter Unlocked:", 
+                                                              "\t--------------------------------------------------------\n"+
+                                                              "\t| \~\= WELCOME TO CHAPTER 3 \=\~ |\n"+
+                                                              "\t--------------------------------------------------------"
+                                                             );
+																					 var end = Terminus.item['root']['letter'].length;
+																					 if((end+1)*17.5+Terminus.textY > Terminus.canvas.height){ Terminus.clear(); }
+                                           for(var i=0; i < end; i++){
+                                             Terminus.display(Terminus.item['root']['letter'][i], "#AA7");
+                                           }
+                                           delete Terminus.item['root']['letter'];
+                                         }
+                                         Terminus.Pnew.root = false;
+                                       }
+                                       break;
+
+       case Terminus.dir.basement    : if(Terminus.Pnew.basement){
+                                         if(Terminus.item.basement.letter !== undefined){
+																					 var end = Terminus.item['basement']['letter'].length;
+																					 if((end+1)*17.5+Terminus.textY > Terminus.canvas.height){ Terminus.clear(); }
+                                           for(var i=0; i < end; i++){
+                                             Terminus.display(Terminus.item['basement']['letter'][i], "#AA7");
+                                           }
+                                           delete Terminus.item['basement']['letter'];
+                                         }
+                                         Terminus.Pnew.basement = false;
+                                       }
+                                       break;
+
+       case Terminus.dir.creakyStairs: if(Terminus.Pnew.creakyStairs){
+                                         if(Terminus.item.creakyStairs.letter !== undefined){
+																					 var end = Terminus.item['creakyStairs']['letter'].length;
+																					 if((end+1)*17.5+Terminus.textY > Terminus.canvas.height){ Terminus.clear(); }
+                                           for(var i=0; i < end; i++){
+                                             Terminus.display(Terminus.item['creakyStairs']['letter'][i], "#AA7");
+                                           }
+                                           delete Terminus.item['creakyStairs']['letter'];
+                                         }
+                                         Terminus.Pnew.creakyStairs = false;
+                                       }
+                                       break;
+
+       case Terminus.dir.musicRoom   : if(Terminus.Pnew.musicRoom){
+                                         if(Terminus.item.musicRoom.letter !== undefined){
+																					 var end = Terminus.item['musicRoom']['letter'].length;
+																					 if((end+1)*17.5+Terminus.textY > Terminus.canvas.height){ Terminus.clear(); }
+                                           for(var i=0; i < end; i++){
+                                             Terminus.display(Terminus.item['musicRoom']['letter'][i], "#AA7");
+                                           }
+                                           delete Terminus.item['musicRoom']['letter'];
+                                         }
+                                         Terminus.Pnew.musicRoom = false;
+                                       }
+                                       break;
+
+       case Terminus.dir.MagicRoom   : if(Terminus.Pnew.MagicRoom){
+                                         if(Terminus.item.MagicRoom.letter !== undefined){
+																					 var end = Terminus.item['MagicRoom']['letter'].length;
+																					 if((end+1)*17.5+Terminus.textY > Terminus.canvas.height){ Terminus.clear(); }
+                                           for(var i=0; i < end; i++){
+                                             Terminus.display(Terminus.item['MagicRoom']['letter'][i], "#AA7");
+                                           }
+                                           delete Terminus.item['MagicRoom']['letter'];
+                                         }
+                                         Terminus.Pnew.MagicRoom = false;
+                                       }
+                                       break;
+
+      }
+      Terminus.textY += 17.5;
+
+      Terminus.details();
+      var cmd = Terminus.getText();
+      if(Terminus["ENTER"]){
+        Terminus["ENTER"] = false;
+        switch(cwd){
+          case Terminus.dir.home         : Terminus['home'](cmd); 
+                                           break;
+
+          case Terminus.dir.forest       : Terminus['forest'](cmd); 
+                                           break;
+
+          case Terminus.dir.academy      : Terminus['academy'](cmd);
+                                           break;
+
+          case Terminus.dir.lessons      : Terminus['lessons'](cmd);
+                                           break;
+
+          case Terminus.dir.Library      : Terminus['Library'](cmd);
+                                           break;
+
+          case Terminus.dir.practiceRoom : Terminus['practiceRoom'](cmd);
+                                           break;
+
+          case Terminus.dir.meadow       : Terminus['meadow'](cmd);
+                                           break;
+
+          case Terminus.dir.mountains    : Terminus['mountains'](cmd);
+                                           break;
+
+          case Terminus.dir.cave         : Terminus['cave'](cmd);
+                                           break;
+
+          case Terminus.dir.Staircase    : Terminus['Staircase'](cmd);
+                                           break;
+
+          case Terminus.dir.DarkCorridor : Terminus['DarkCorridor'](cmd);
+                                           break;
+
+          case Terminus.dir.DankRoom     : Terminus['DankRoom'](cmd);
+                                           break;
+
+          case Terminus.dir.SmallHole    : Terminus['SmallHole'](cmd);
+                                           break;
+
+          case Terminus.dir.Tunnel       : Terminus['Tunnel'](cmd);
+                                           break;
+
+          case Terminus.dir.StoneChamber : Terminus['StoneChamber'](cmd);
+                                           break;
+
+          case Terminus.dir.TownSquare   : Terminus['TownSquare'](cmd);
+                                           break;
+
+          case Terminus.dir.TSLibrary    : Terminus['TSLibrary'](cmd);
+                                           break;
+
+          case Terminus.dir.BackRoom     : Terminus['BackRoom'](cmd);
+                                           break;
+
+          case Terminus.dir.Marketplace  : Terminus['Marketplace'](cmd);
+                                           break;
+
+          case Terminus.dir.ArtisansShop : Terminus['ArtisansShop'](cmd);
+                                           break;
+
+          case Terminus.dir.RockyPath    : Terminus['RockyPath'](cmd);
+                                           break;
+
+          case Terminus.dir.Farm         : Terminus['Farm'](cmd);
+                                           break;
+
+          case Terminus.dir.BrokenBridge : Terminus['BrokenBridge'](cmd);
+                                           break;
+
+          case Terminus.dir.Clearing     : Terminus['Clearing'](cmd);
+                                           break;
+
+          case Terminus.dir.OminousPath  : Terminus['OminousPath'](cmd);
+                                           break;
+
+          case Terminus.dir.Cave         : Terminus['Cave'](cmd);
+                                           break;
+
+          case Terminus.dir.root         : Terminus['root'](cmd);
+                                           break;
+
+          case Terminus.dir.basement     : Terminus['basement'](cmd);
+                                           break;
+
+          case Terminus.dir.creakyStairs : Terminus['creakyStairs'](cmd);
+                                           break;
+
+          case Terminus.dir.musicRoom    : Terminus['musicRoom'](cmd);
+                                           break;
+
+          case Terminus.dir.MagicRoom    : Terminus['MagicRoom'](cmd);
+                                           break;
+        }
+        Terminus.textY += 17.5;
+				if(cwd !== Terminus.dir.pwd){ Terminus.count  = 0; }
+      }
+
+      window.requestAnimFrame(Runner);
+    }
+    window.requestAnimFrame(Runner);
+  </script>
+<!--*********************************************************************************************************************************-->
+  <script type="text/javascript">
+//########################################################__Start Game Function__#######################################################
+    function startGame(){
+      document.getElementById("Menu").style.display    = "none";
+      document.getElementById("Menu").style.visibility = "hidden";
+      document.getElementById("Game").style.display    = "block";
+      document.getElementById("Game").style.visibility = "visible";
+      document.getElementById("Game").style.height     = document.height;
+      document.getElementById("command").focus();
+      document.getElementById("command").value         = "";
+//      document.getElementById("menu-button").style.display = "block";
+//      document.getElementById("menu-button").style.visibility = "visible";
+    }
+//--*********************************************************************************************************************************-->
+
+//##########################################################__View Menu__###############################################################
+    function viewMenu(){
+      document.getElementById("Menu").style.display           = "block";
+      document.getElementById("Menu").style.visibility        = "visible";
+      document.getElementById("Game").style.display           = "none";
+      document.getElementById("Game").style.visibility        = "hidden";
+      document.getElementById("menu-button").style.display    = "none";
+      document.getElementById("menu-button").style.visibility = "hidden";
+      document.getElementById("Menu").style.height            = document.height;
+      document.getElementById("command").value                = "";
+    }
+//--*********************************************************************************************************************************-->
+
+//##########################################################__Keyboard Key Handlers__###################################################
+    document.addEventListener("keydown", function(e){ if(e.keyCode === 13){ Terminus["ENTER"] = true;  } }, false);
+
+    document.addEventListener("keyup",   function(e){ if(e.keyCode === 13){ Terminus["ENTER"] = false; } }, false);
+  </script>
+<!--*********************************************************************************************************************************-->
+</body>
+</html>
